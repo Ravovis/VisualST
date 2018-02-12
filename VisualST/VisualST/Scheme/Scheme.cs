@@ -16,7 +16,14 @@ namespace VisualST.Scheme
         public static List<Action> actions = new List<Action> { };
         //public static int lastNumber { get; set; } = 0;
 
-
+        public static string AtrInfo(string actName, string atrName)
+        {
+            foreach(Action act in actions)
+            {
+                if (act.name == actName) return act.getInfo(atrName);
+            }
+            return "";
+        }
         
         public static List<string> getActionsNames()
         {

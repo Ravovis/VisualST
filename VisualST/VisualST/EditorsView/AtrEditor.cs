@@ -184,7 +184,10 @@ namespace VisualST.EditorsView
                 ComboBox cmb = sender as ComboBox;
                 string ActiveElement = cmb.SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last().ToLower();
                 //Убрать все остальные элементы
-                if (ActiveElement != "") { DescrDelete();  TTypeGenerate(); }
+                if (ActiveElement != "")
+                {
+                    try { mainWin.RegisterName("AtributesBox", AtributesBox); } catch (Exception e) { };
+                    DescrDelete();  TTypeGenerate(); }
             };
    
              if ((activeAtribute.ContainsKey(ActionsBox.SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last())) &&
@@ -267,6 +270,21 @@ namespace VisualST.EditorsView
                 InnerItem.Content = ttypes[i];
                 TTypesBox.Items.Add(InnerItem);
             }
+            string ActionsText = ((ComboBox)mainWin.FindName("ActionsBox")).SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last();
+            string AtributesText = ((ComboBox)mainWin.FindName("AtributesBox")).SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last();
+            string activeTtype = Scheme.Scheme.AtrInfo(ActionsText, AtributesText).Split(new string[] { "-" }, StringSplitOptions.None)[0];
+            switch(activeTtype)
+            {
+
+                case "simple":
+                    TTypesBox.SelectedIndex = 0;
+                    
+                    break;
+                default:
+                    break;
+            }
+
+            
             TTypesBox.SelectionChanged += (sender, i) => {
                 ComboBox cmb = sender as ComboBox;
                 string ActiveElement = cmb.SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last().ToLower();
@@ -283,6 +301,14 @@ namespace VisualST.EditorsView
             DescrPanel.Children.Add(TTypePanel);
 
             mainWin.Editor.Children.Add(DescrPanel);
+
+
+            if(TTypesBox.SelectedIndex >= 0)
+            {
+                
+                TypeDelete();
+                TypeGenerate();
+            }
             
         }
         public static void TypeGenerate()
@@ -301,6 +327,19 @@ namespace VisualST.EditorsView
                 ComboBoxItem InnerItem = new ComboBoxItem();
                 InnerItem.Content = types1[i];
                 TypesBox.Items.Add(InnerItem);
+            }
+            string ActionsText = ((ComboBox)mainWin.FindName("ActionsBox")).SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last();
+            string AtributesText = ((ComboBox)mainWin.FindName("AtributesBox")).SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last();
+            string activeType = Scheme.Scheme.AtrInfo(ActionsText, AtributesText).Split(new string[] { "-" }, StringSplitOptions.None)[1];
+            switch (activeType)
+            {
+
+                case "number":
+                    TypesBox.SelectedIndex = 0;
+
+                    break;
+                default:
+                    break;
             }
             TypesBox.SelectionChanged += (sender, i) => {
                 string ActiveAction = ((ComboBox)mainWin.FindName("ActionsBox")).SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last();
@@ -328,15 +367,20 @@ namespace VisualST.EditorsView
 
                 
             };
+            
 
             WrapPanel TypePanel = new WrapPanel();
             try { mainWin.RegisterName("TypePanel", TypePanel); }catch(Exception e) { }
             TypePanel.Children.Add(TypesBox);
 
             DescrPanel.Children.Add(TypePanel);
-            
-            
-           
+            if (TypesBox.SelectedIndex >= 0)
+            {
+
+                RestDelete(); RestGenerate();
+            }
+
+
         }
         public static void RestGenerate()
         {

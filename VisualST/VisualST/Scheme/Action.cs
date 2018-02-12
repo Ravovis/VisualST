@@ -20,9 +20,18 @@ namespace VisualST.Scheme
             return atrlist;
         }
 
+        public string getInfo(string name)
+        {
+            foreach(Atribute atr in atributes)
+            {
+                if (atr.name == name) return atr.Info();
+            }
+            return "";
+        }
+
         public Action()
         {
-            name = "Действие" + Scheme.actions.Count+1;
+            name = "Действие" + (Scheme.actions.Count+1);
             atributes = new List<Atribute> { };
             abstractions = new List<int> { };
             atrlist = new List<string> { };
