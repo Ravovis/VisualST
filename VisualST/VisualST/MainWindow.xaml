@@ -1,0 +1,29 @@
+﻿<Window x:Class="VisualST.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VisualST"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="533.5" Width="762" 
+        IsEnabledChanged="Window_IsEnabledChanged">
+    <StackPanel x:Name="MainPanel">
+        <WrapPanel x:Name="ToolBar">
+            <Button Content="Новый Проект" Margin="10,10,10,10" />
+            <Button Content="Загрузить Проект" Margin="10,10,10,10"/>
+            <Button Content="Сохранить проект"  Margin="10,10,10,10"/>
+            <Button Content="Закрыть проект"  Margin="10,10,10,10" />
+            <Label Content="Проект не выбран"  Margin="10,10,10,10" />
+        </WrapPanel>
+        <StackPanel x:Name="EditorChoice">
+            <ComboBox Name="EditorCombobox" HorizontalAlignment="Right" MinWidth="100" Margin="10,10,10,10"
+                  SelectionChanged="EditorChanged">
+                <ComboBoxItem>Последовательности</ComboBoxItem>
+                <ComboBoxItem>Действия</ComboBoxItem>
+                <ComboBoxItem >Атрибуты</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel x:Name="Editor"></StackPanel>
+    </StackPanel>
+
+</Window>
