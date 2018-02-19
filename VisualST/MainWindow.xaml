@@ -9,10 +9,10 @@
         IsEnabledChanged="Window_IsEnabledChanged">
     <StackPanel x:Name="MainPanel">
         <WrapPanel x:Name="ToolBar">
-            <Button Content="Новый Проект" Margin="10,10,10,10" />
-            <Button Content="Загрузить Проект" Margin="10,10,10,10"/>
-            <Button Content="Сохранить проект"  Margin="10,10,10,10"/>
-            <Button Content="Закрыть проект"  Margin="10,10,10,10" />
+            <Button x:Name="NewProject" Content="Новый Проект" Margin="10,10,10,10" />
+            <Button x:Name="LoadProject" Content="Загрузить Проект" Margin="10,10,10,10"/>
+            <Button x:Name="SaveProject" Content="Сохранить проект"  Margin="10,10,10,10"/>
+            <Button x:Name="CloseProject" Content="Закрыть проект"  Margin="10,10,10,10" />
             <Label Content="Проект не выбран"  Margin="10,10,10,10" />
         </WrapPanel>
         <StackPanel x:Name="EditorChoice">
