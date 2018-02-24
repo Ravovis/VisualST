@@ -27,12 +27,15 @@ namespace VisualST
         
         public MainWindow()
         {
+            
             InitializeComponent();
 
         }
         //Events
         private void EditorChanged(object sender, SelectionChangedEventArgs e)
         {
+            
+
             EditorsView.AtrEditor.EditClear();
             string choice = EditorCombobox.SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last().ToLower();
             switch(choice)
@@ -48,6 +51,13 @@ namespace VisualST
         {
             EditorsView.AtrEditor.EditClear();
             EditorsView.AtrEditor.ActGenerate();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            DB.SQLActionRepository db = new DB.SQLActionRepository();
+            db.Create(new Models.Action { Name = "Тестовое действие после закрытия программы" });
+            db.Save();
         }
         //Help Functions
 

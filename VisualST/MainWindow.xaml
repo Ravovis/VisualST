@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:VisualST"
         mc:Ignorable="d"
         Title="MainWindow" Height="533.5" Width="762" 
-        IsEnabledChanged="Window_IsEnabledChanged">
+        IsEnabledChanged="Window_IsEnabledChanged"
+        Closing="Window_Closing"
+        >
     <StackPanel x:Name="MainPanel">
         <WrapPanel x:Name="ToolBar">
             <Button x:Name="NewProject" Content="Новый Проект" Margin="10,10,10,10" />
